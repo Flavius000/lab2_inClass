@@ -11,7 +11,7 @@ public abstract class AbstractCrudRepository <ID, E extends HasID<ID>> implement
      * Class constructor
      */
     AbstractCrudRepository(){
-        this.elemente = new HashMap<>();
+        this.elemente = new HashMap<ID,E>();
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class AbstractCrudRepository <ID, E extends HasID<ID>> implement
         if(this.elemente.get(entity.getID()) == null){
             return entity;
         }
-        this.elemente.replace(entity.getID(), entity);
+        this.elemente.put(entity.getID(), entity);
         return null;
     }
 }

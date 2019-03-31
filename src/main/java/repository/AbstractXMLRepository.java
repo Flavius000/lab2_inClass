@@ -3,7 +3,7 @@ package repository;
 import domain.Student;
 import validation.ValidationException;
 import java.io.*;
-import java.util.Optional;
+import java.util.Iterator;
 
 //import javafx.scene.input.DataFormat;
 import org.w3c.dom.Document;
@@ -106,10 +106,14 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
                     .newDocument();
             Element root  = document.createElement("inbox");
             document.appendChild(root);
-            super.findAll().forEach(e->{
-                Element elem = createElementfromEntity(document,e);
+            Iterable<E> all = super.findAll();
+            Iterator<E> x = all.iterator();
+
+            while(x.hasNext())
+            {
+                Element elem = createElementfromEntity(document,x.next());
                 root.appendChild(elem);
-            });
+            }
 
             //write Document to file
             Transformer transformer = TransformerFactory.

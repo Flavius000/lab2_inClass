@@ -20,6 +20,7 @@ public class NotaValidator implements Validator<Nota> {
         this.temaFileRepository = temaFileRepository;
     }
 
+
     /**
      * Valideaza o nota
      * @param nota - nota pe care o valideaza
