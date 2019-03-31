@@ -11,7 +11,7 @@ import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.ValidationException;
 
-public class Tests {
+public class Tests extends junit.framework.TestCase{
 
     @Test
     public void addStudentTescase_NegativeId() {
