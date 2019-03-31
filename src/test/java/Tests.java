@@ -14,7 +14,7 @@ import validation.ValidationException;
 public class Tests extends junit.framework.TestCase{
 
     @Test
-    public void addStudentTescase_NegativeId() {
+    public void testaddStudentTescase_NegativeId() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
         String filenameStudent = "fisiere/Studenti.xml";
@@ -43,7 +43,7 @@ public class Tests extends junit.framework.TestCase{
     }
 
     @Test
-    public void addStudentTescase2() {
+    public void testaddStudentTescase2() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
         String filenameStudent = "fisiere/Studenti.xml";
