@@ -255,7 +255,7 @@ public class Tests extends junit.framework.TestCase{
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Tema tema = new Tema("10",null, 9,  10);
+        Tema tema = new Tema("10","", 9,  10);
 
 
         try
