@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
@@ -209,4 +210,64 @@ public class Tests extends junit.framework.TestCase{
 
         }
     }
+
+    @Test
+    public void testaddTemaWithDeadlineBeforePrimire()
+    {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Tema tema = new Tema("10","descriere", 9,  10);
+
+
+        try
+        {
+            service.addTema(tema);
+            assert(false) : "Team with primire greater than deadline invalid";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+    }
+
+    @Test
+    public void testaddTemaWithNullDescription()
+    {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Tema tema = new Tema("10",null, 9,  10);
+
+
+        try
+        {
+            service.addTema(tema);
+            assert(false) : "Team with descriere null invalid";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+    }
+
+
 }
