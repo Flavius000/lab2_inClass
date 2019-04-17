@@ -11,12 +11,19 @@ public class StudentValidator implements Validator<Student> {
      */
     @Override
     public void validate(Student entity) throws ValidationException {
-        if(entity.getID().equals("")){
+        try
+        {
+            if(entity.getID().equals("") ||
+                    Integer.parseInt(entity.getID()) < 0 ||
+                    entity.getID() == null){
+                throw new ValidationException("Id incorect!");
+            }
+        }
+        catch(Exception ex)
+        {
             throw new ValidationException("Id incorect!");
         }
-        if(entity.getID() == null){
-            throw new ValidationException("Id incorect!");
-        }
+
         if(entity.getNume() == ""){
             throw new ValidationException("Nume incorect!");
         }
