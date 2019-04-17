@@ -226,17 +226,16 @@ public class Tests extends junit.framework.TestCase{
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Tema tema = new Tema("10","descriere", 9,  10);
+        Tema tema = new Tema("10","descriere", 9,  8);
 
 
         try
         {
             service.addTema(tema);
-            assert(false) : "Team with primire greater than deadline invalid";
         }
         catch(ValidationException ex)
         {
-
+            assert(false) : "Team with primire greater than deadline invalid";
         }
     }
 

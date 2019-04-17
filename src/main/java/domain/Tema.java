@@ -2,6 +2,8 @@ package domain;
 
 
 import repository.HasID;
+import sun.security.validator.ValidatorException;
+import validation.Validator;
 
 
 public class Tema implements HasID<String> {
