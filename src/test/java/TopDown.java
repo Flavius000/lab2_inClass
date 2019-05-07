@@ -49,16 +49,9 @@ public class TopDown extends junit.framework.TestCase {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Tema tema = new Tema("11","TestDescription", 11,  4);
+        Tema tema = new Tema("11","TestDescription", 12,  11);
 
-        try
-        {
-            service.addTema(tema);
-        }
-        catch(ValidationException ex)
-        {
-            assert(false) : "Tema should be added";
-        }
+        service.addTema(tema);
     }
 
     public void addGrade()
