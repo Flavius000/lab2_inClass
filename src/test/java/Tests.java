@@ -268,5 +268,81 @@ public class Tests extends junit.framework.TestCase{
         }
     }
 
+    @Test
+    public void testaddTemaCoverage()
+    {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Tema tema0 = new Tema(null,"blabla", 10,  10);
+        Tema tema1 = new Tema("","blabla", 10,  10);
+
+
+        Tema tema2 = new Tema("10","blabla", 9,  10);
+        Tema tema3 = new Tema("10","blabla", 9,  10);
+
+        Tema tema4 = new Tema("12","blabla", 9,  20);
+
+        Tema tema5 = new Tema("13","blabla", 20,  10);
+
+        Tema tema6 = new Tema("14", "blabla", 10, 10);
+
+        try
+        {
+            service.addTema(tema0);
+            service.addTema(tema1);
+            assert(false) : "Numar tema invalid!";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+        try
+        {
+            service.addTema(tema2);
+            service.addTema(tema3);
+            assert(false) : "Tema with id already exists.";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+        try
+        {
+            service.addTema(tema4);
+            assert(false) : "Saptamana primirii trebuie sa fie intre 1-14.";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+        try
+        {
+            service.addTema(tema5);
+            assert(false) : "Deadline intre 1-14.";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+        try
+        {
+            service.addTema(tema6);
+            assert(true) : "Tema buna..";
+        }
+        catch(ValidationException ex)
+        {
+
+        }
+    }
 
 }
